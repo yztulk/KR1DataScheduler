@@ -1,4 +1,4 @@
-Date,Time,pb_ratio,current_share_value,total_holdings_gbp,market_cap,usd_to_gbp_exchange_rate
+Date,Time,pb_ratio,current_share_value,total_holdings_gbp,market_cap,usd_to_gbp_exchange_rate, nav_per_share_gbp
 "2024-01-16","12:39:18","0.6748909809918885","0.85","223390290.05606467","150764092.0","0.786"
 "2024-01-16","12:40:23","0.6760770780878369","0.85","222998378.2713197","150764092.0","0.786"
 "2024-01-16","12:41:39","0.6760770780878369","0.85","222998378.2713197","150764092.0","0.786"

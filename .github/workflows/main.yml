@@ -15,10 +15,10 @@ jobs:
 
     steps:
     - name: Checkout the repository
-      uses: actions/checkout@latest  # Update to the latest version
+      uses: actions/checkout@v2  # Use a specific version, e.g., v2
 
     - name: Set up Python
-      uses: actions/setup-python@latest  # Update to the latest version
+      uses: actions/setup-python@v2  # Use a specific version, e.g., v2
       with:
         python-version: '3.x'
 

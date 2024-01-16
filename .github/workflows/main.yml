@@ -38,4 +38,4 @@ jobs:
       env:
         # This assumes you have set your personal access token as a secret in your repository
         # Replace 'PERSONAL_ACCESS_TOKEN' with your actual secret name
-        GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.Scheduler }}

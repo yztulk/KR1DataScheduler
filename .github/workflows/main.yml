@@ -4,6 +4,9 @@ on:
   schedule:
     # Runs every 1 minutes
     - cron: '* * * * *'
+  push:
+    branches:
+      - main
 
 jobs:
   run-and-commit:

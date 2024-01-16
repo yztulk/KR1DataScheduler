@@ -1,0 +1,37 @@
+name: Run API Script and Commit Results
+
+on:
+  schedule:
+    # Runs every 1 minutes
+    - cron: '* * * * *'
+
+jobs:
+  run-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: pip install requests beautifulsoup4
+
+    - name: Run the API script
+      run: python api.py
+
+    - name: Commit and push if changes to results.csv
+      run: |
+        git config --global user.name 'automated_script'
+        git config --global user.email 'automated_script@example.com'
+        git add results.csv
+        git commit -m "Update results.csv with new data" -a || echo "No changes to commit"
+        git push
+      env:
+        # This assumes you have set your personal access token as a secret in your repository
+        # Replace 'PERSONAL_ACCESS_TOKEN' with your actual secret name
+        GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}

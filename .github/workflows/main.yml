@@ -1,25 +1,37 @@
-name: Scheduled Script Execution
+name: Run API Script and Commit Results
 
 on:
   schedule:
-    - cron: '0 8,20 * * *'  # Runs at 8:00 and 20:00 UTC every day
+    # Runs every 5 minutes
+    - cron: '*/5 * * * *'
 
 jobs:
-  run-script:
+  run-and-commit:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout the repository
       uses: actions/checkout@v2
 
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x'  # Specify your Python version here
+        python-version: '3.x'
 
     - name: Install dependencies
-      run: |
-        pip install requests beautifulsoup4
+      run: pip install requests beautifulsoup4
 
-    - name: Execute script
-      run: python your_script.py
+    - name: Run the API script
+      run: python api.py
+
+    - name: Commit and push if changes to results.csv
+      run: |
+        git config --global user.name 'Your Name'
+        git config --global user.email 'your-email@example.com'
+        git add results.csv
+        git commit -m "Update results.csv with new data" -a || echo "No changes to commit"
+        git push
+      env:
+        # This assumes you have set your personal access token as a secret in your repository
+        # Replace 'PERSONAL_ACCESS_TOKEN' with your actual secret name
+        GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}

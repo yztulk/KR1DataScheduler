@@ -27,7 +27,7 @@ jobs:
     - name: Commit and push if changes to results.csv
       run: |
         git config --global user.name 'automated_script'
-        git config --global user.email automated_script@example.com'
+        git config --global user.email 'automated_script@example.com'
         git add results.csv
         git commit -m "Update results.csv with new data" -a || echo "No changes to commit"
         git push

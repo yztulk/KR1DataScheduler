@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 # Function to get the 'Mid' value from the website in pounds
 def get_stock_value():
     url = "https://www.aquis.eu/companies/KR1?securityidaqse=KR1"
+    
     try:
         response = requests.get(url)
         if response.status_code == 200:

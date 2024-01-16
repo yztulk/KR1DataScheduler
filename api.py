@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 # Function to get the 'Mid' value from the website in pounds
 def get_stock_value():
     url = "https://www.aquis.eu/companies/KR1?securityidaqse=KR1"
-    
     try:
         response = requests.get(url)
         if response.status_code == 200:
@@ -33,13 +32,13 @@ def get_stock_value():
 
 current_share_value = get_stock_value()
 
-def append_to_csv(pb_ratio, current_share_value, total_holdings_gbp, market_cap, usd_to_gbp_exchange_rate):
+def append_to_csv(pb_ratio, current_share_value, total_holdings_gbp, market_cap, usd_to_gbp_exchange_rate, nav_per_share_gbp):
     # Get the current date and time
     current_date = datetime.now().strftime('%Y-%m-%d')
     current_time = datetime.now().strftime('%H:%M:%S')
     
     # Data to be appended, manually formatting as a quoted string
-    data = [f'"{current_date}"', f'"{current_time}"', f'"{pb_ratio}"', f'"{current_share_value}"', f'"{total_holdings_gbp}"', f'"{market_cap}"', f'"{usd_to_gbp_exchange_rate}"']
+    data = [f'"{current_date}"', f'"{current_time}"', f'"{pb_ratio}"', f'"{current_share_value}"', f'"{total_holdings_gbp}"', f'"{market_cap}"', f'"{usd_to_gbp_exchange_rate}"', f'"{nav_per_share_gbp}"']
 
     # Append data to the CSV file
     with open('results.csv', mode='a', newline='') as file:
@@ -161,4 +160,4 @@ print(f"Net Asset Value (NAV) per share: £{nav_per_share_gbp:,.2f}")
 # Print the P/B ratio
 print(f"Price-to-Book (P/B) Ratio: {pb_ratio:.2f}")
 
-append_to_csv(pb_ratio, current_share_value, total_holdings_gbp, market_cap, usd_to_gbp_exchange_rate)
+append_to_csv(pb_ratio, current_share_value, total_holdings_gbp, market_cap, usd_to_gbp_exchange_rate, nav_per_share_gbp)

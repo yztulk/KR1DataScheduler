@@ -4,7 +4,7 @@ name: Run API Script and Commit Results
 on:
   schedule:
     # Runs every 1 minutes1
-    - cron: '*/15 * * * *'
+    - cron: '0 * * * *'
   push:
     branches:
       - main

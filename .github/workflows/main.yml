@@ -1,0 +1,25 @@
+name: Scheduled Script Execution
+
+on:
+  schedule:
+    - cron: '0 8,20 * * *'  # Runs at 8:00 and 20:00 UTC every day
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'  # Specify your Python version here
+
+    - name: Install dependencies
+      run: |
+        pip install requests beautifulsoup4
+
+    - name: Execute script
+      run: python your_script.py
